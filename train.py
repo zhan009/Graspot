@@ -32,12 +32,11 @@ def norm_and_center_coordinates(X):
 
 
 def train_Graspot(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key_added='Graspot',
-                             gradient_clipping=5., weight_decay=0.0001, margin=1.0, verbose=False,
-                             random_seed=2023, iter_comb=None, knn_neigh=100, Batch_list=None, initial=None, Couple=None,
+                             gradient_clipping=5., weight_decay=0.0001, verbose=False,
+                             random_seed=2023, iter_comb=None, Batch_list=None, initial=None, Couple=None,
                              device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')):
     """\
-    Train graph attention auto-encoder and use spot triplets across slices to perform batch correction in the embedding space.
-    To deal with large-scale data with multiple slices and reduce GPU memory usage, each slice is considered as a subgraph for training.
+    Train Graspot including GAT module and UOT alignment module.
 
     Parameters
     ----------
@@ -55,14 +54,14 @@ def train_Graspot(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key_adde
         Gradient Clipping.
     weight_decay
         Weight decay for AdamOptimizer.
-    margin
-        Margin is used in triplet loss to enforce the distance between positive and negative pairs.
-        Larger values result in more aggressive correction.
     iter_comb
-        For multiple slices integration, we perform iterative pairwise integration. iter_comb is used to specify the order of integration.
-        For example, (0, 1) means slice 0 will be algined with slice 1 as reference.
-    knn_neigh
-        The number of nearest neighbors when constructing MNNs. If knn_neigh>1, points in one slice may have multiple MNN points in another slice.
+        iter_comb is used to specify the order of integration.
+    Batch_list
+        Multiple slices in integration. Default: None
+    initial
+        initial transport matrix setting in unbalanced optimal transport. Default: None
+    Couple
+        prior information about weights between cell correspondence. Default: None
     device
         See torch.device.
 
@@ -179,12 +178,11 @@ def train_Graspot(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key_adde
 
 
 def train_Graspot_Sub(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key_added='Graspot',
-                             gradient_clipping=5., weight_decay=0.0001, margin=1.0, verbose=False,
-                             random_seed=2023, iter_comb=None, knn_neigh=100, Batch_list=None, initial=None, Couple=None,
+                             gradient_clipping=5., weight_decay=0.0001, verbose=False,
+                             random_seed=2023, iter_comb=None, Batch_list=None, initial=None, Couple=None,
                              device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')):
     """\
-    Train graph attention auto-encoder and use spot triplets across slices to perform batch correction in the embedding space.
-    To deal with large-scale data with multiple slices and reduce GPU memory usage, each slice is considered as a subgraph for training.
+    Train Graspot including GAT module and UOT alignment module with Pretrain.
 
     Parameters
     ----------
@@ -202,14 +200,14 @@ def train_Graspot_Sub(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key_
         Gradient Clipping.
     weight_decay
         Weight decay for AdamOptimizer.
-    margin
-        Margin is used in triplet loss to enforce the distance between positive and negative pairs.
-        Larger values result in more aggressive correction.
     iter_comb
-        For multiple slices integration, we perform iterative pairwise integration. iter_comb is used to specify the order of integration.
-        For example, (0, 1) means slice 0 will be algined with slice 1 as reference.
-    knn_neigh
-        The number of nearest neighbors when constructing MNNs. If knn_neigh>1, points in one slice may have multiple MNN points in another slice.
+        iter_comb is used to specify the order of integration.
+    Batch_list
+        Multiple slices in integration. Default: None
+    initial
+        initial transport matrix setting in unbalanced optimal transport. Default: None
+    Couple
+        prior information about weights between cell correspondence. Default: None
     device
         See torch.device.
 
@@ -351,12 +349,11 @@ def train_Graspot_Sub(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key_
 
 
 def train_Graspot_Para(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key_added='Graspot',
-                             gradient_clipping=5., weight_decay=0.0001, margin=1.0, verbose=False,
-                             random_seed=2023, iter_comb=None, knn_neigh=100, Batch_list=None, initial=None, Couple=None,
+                             gradient_clipping=5., weight_decay=0.0001, verbose=False,
+                             random_seed=2023, iter_comb=None, Batch_list=None, initial=None, Couple=None,
                              device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')):
     """\
-    Train graph attention auto-encoder and use spot triplets across slices to perform batch correction in the embedding space.
-    To deal with large-scale data with multiple slices and reduce GPU memory usage, each slice is considered as a subgraph for training.
+   Train Graspot including GAT module and UOT alignment module with different Unbalanced OT parameters.
 
     Parameters
     ----------
@@ -374,14 +371,14 @@ def train_Graspot_Para(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key
         Gradient Clipping.
     weight_decay
         Weight decay for AdamOptimizer.
-    margin
-        Margin is used in triplet loss to enforce the distance between positive and negative pairs.
-        Larger values result in more aggressive correction.
     iter_comb
-        For multiple slices integration, we perform iterative pairwise integration. iter_comb is used to specify the order of integration.
-        For example, (0, 1) means slice 0 will be algined with slice 1 as reference.
-    knn_neigh
-        The number of nearest neighbors when constructing MNNs. If knn_neigh>1, points in one slice may have multiple MNN points in another slice.
+        iter_comb is used to specify the order of integration.
+    Batch_list
+        Multiple slices in integration. Default: None
+    initial
+        initial transport matrix setting in unbalanced optimal transport. Default: None
+    Couple
+        prior information about weights between cell correspondence. Default: None
     device
         See torch.device.
 

@@ -25,7 +25,7 @@ def distance_matrix(pts_src: torch.Tensor, pts_dst: torch.Tensor, p: int = 2):
 
 def unbalanced_ot(tran, mu1, mu2, device, Couple, reg=0.1, reg_m=1.0):
     '''
-    Calculate a unbalanced optimal transport matrix between mini batches.
+    Calculate a unbalanced optimal transport matrix between batches.
 
     Parameters
     ----------
@@ -33,28 +33,16 @@ def unbalanced_ot(tran, mu1, mu2, device, Couple, reg=0.1, reg_m=1.0):
         transport matrix between the two batches sampling from the global OT matrix. 
     mu1
         mean vector of batch 1 from the encoder
-    var1
-        standard deviation vector of batch 1 from the encoder
     mu2
         mean vector of batch 2 from the encoder
-    var2
-        standard deviation vector of batch 2 from the encoder
-    reg:
+    reg
         Entropy regularization parameter in OT. Default: 0.1
-    reg_m:
+    reg_m
         Unbalanced OT parameter. Larger values means more balanced OT. Default: 1.0
     Couple
         prior information about weights between cell correspondence. Default: None
     device
         training device
-    idx_q
-        domain_id of query batch
-    idx_r
-        domain_id of reference batch
-    query_weight
-        reweighted vectors of query batch
-    ref_weight
-        reweighted vectors of reference batch
 
     Returns
     -------
@@ -128,7 +116,7 @@ def unbalanced_ot(tran, mu1, mu2, device, Couple, reg=0.1, reg_m=1.0):
 
 def unbalanced_ot_parameter(tran, mu1, mu2, device, Couple, reg=0.1, reg_m_1 = 1, reg_m_2 = 1):
     '''
-    Calculate a unbalanced optimal transport matrix between mini batches.
+    Calculate a unbalanced optimal transport matrix between batches with different reg_m parameters.
 
     Parameters
     ----------
@@ -136,28 +124,18 @@ def unbalanced_ot_parameter(tran, mu1, mu2, device, Couple, reg=0.1, reg_m_1 = 1
         transport matrix between the two batches sampling from the global OT matrix. 
     mu1
         mean vector of batch 1 from the encoder
-    var1
-        standard deviation vector of batch 1 from the encoder
     mu2
         mean vector of batch 2 from the encoder
-    var2
-        standard deviation vector of batch 2 from the encoder
-    reg:
+    reg
         Entropy regularization parameter in OT. Default: 0.1
-    reg_m:
-        Unbalanced OT parameter. Larger values means more balanced OT. Default: 1.0
+    reg_m_1
+        Unbalanced OT parameter 1. Larger values means more balanced OT. Default: 1.0
+    reg_m_2
+        Unbalanced OT parameter 2. Larger values means more balanced OT. Default: 1.0
     Couple
         prior information about weights between cell correspondence. Default: None
     device
         training device
-    idx_q
-        domain_id of query batch
-    idx_r
-        domain_id of reference batch
-    query_weight
-        reweighted vectors of query batch
-    ref_weight
-        reweighted vectors of reference batch
 
     Returns
     -------
