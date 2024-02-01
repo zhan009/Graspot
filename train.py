@@ -91,7 +91,6 @@ def train_Graspot(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key_adde
 
     loader = DataLoader(data_list, batch_size=1, shuffle=False)
 
-    #model = STAligner(hidden_dims=[adata.X.shape[1], hidden_dims[0], hidden_dims[1]]).to(device)
     model = Graspot(hidden_dims=[adata.X.shape[1], hidden_dims[0], hidden_dims[1]]).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
     if verbose:
@@ -237,7 +236,6 @@ def train_Graspot_Sub(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key_
 
     loader = DataLoader(data_list, batch_size=1, shuffle=False)
 
-    #model = STAligner(hidden_dims=[adata.X.shape[1], hidden_dims[0], hidden_dims[1]]).to(device)
     model = Graspot(hidden_dims=[adata.X.shape[1], hidden_dims[0], hidden_dims[1]]).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
     if verbose:
@@ -408,7 +406,6 @@ def train_Graspot_Para(adata, hidden_dims=[512, 30], n_epochs=200, lr=0.001, key
 
     loader = DataLoader(data_list, batch_size=1, shuffle=False)
 
-    #model = STAligner(hidden_dims=[adata.X.shape[1], hidden_dims[0], hidden_dims[1]]).to(device)
     model = Graspot(hidden_dims=[adata.X.shape[1], hidden_dims[0], hidden_dims[1]]).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
     if verbose:
