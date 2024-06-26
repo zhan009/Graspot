@@ -1,7 +1,7 @@
 # Graspot
 Graspot: A graph attention network for spatial transcriptomics data integration with optimal transport
 
-Author：Zizhan Gao,Kai Cao,Lin Wan
+Author：Zizhan Gao, Kai Cao, Lin Wan
 
 ![overview_graspot_pdf](https://github.com/zhan009/Graspot/assets/133085631/7bc33b60-81ac-4e3b-8a57-2d16f6dcb729)
 
